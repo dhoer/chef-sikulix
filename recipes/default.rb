@@ -19,7 +19,7 @@ opts << '4' if node['sikulix']['option']['system']['all']
 opts << '4.1' if node['sikulix']['option']['system']['windows']
 opts << '4.2' if node['sikulix']['option']['system']['mac']
 opts << '4.3' if node['sikulix']['option']['system']['linux']
-opts << '5' if node['sikulix']['option']['remote_server'] || node.recipes.include?('sikulix::remoteserver')
+opts << '5' if node['sikulix']['option']['remote_server']
 
 batch 'setup_sikulix' do
   code <<-EOH
