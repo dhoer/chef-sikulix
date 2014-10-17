@@ -6,7 +6,7 @@ This cookbook installs SikuliX (http://www.sikulix.com/) via SikuliX Setup.
 
 ## Requirements
 
-Chef 11.14.2 and Ruby 2.0.0 or higher.
+  Chef 11.14.2 and Ruby 1.9.3 or higher.
 
 ### Platform
 
