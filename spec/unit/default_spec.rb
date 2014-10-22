@@ -1,7 +1,11 @@
 require 'spec_helper'
 
 describe 'sikulix::default' do
-  let(:chef_run) { ChefSpec::SoloRunner.converge(described_recipe) }
+  let(:chef_run) do
+    ChefSpec::SoloRunner.new do |node|
+      node.set['sikulix']['option']['java_api'] = true
+    end.converge(described_recipe)
+  end
 
   it 'creates sikulix home directory' do
     expect(chef_run).to create_directory('C:/sikulix')
@@ -12,7 +16,7 @@ describe 'sikulix::default' do
       source: 'http://nightly.sikuli.de/sikulixsetup-1.1.0.jar')
   end
 
-  it 'executes sikulix setup' do
+  it 'executes sikulix setup with java_api option' do
     expect(chef_run).to run_batch('setup_sikulix').with(
       code: %r{java -jar "C:/sikulix/sikulixsetup.jar" options 2})
   end

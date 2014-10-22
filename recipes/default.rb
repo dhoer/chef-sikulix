@@ -19,10 +19,11 @@ opts << '4' if node['sikulix']['option']['system']['all']
 opts << '4.1' if node['sikulix']['option']['system']['windows']
 opts << '4.2' if node['sikulix']['option']['system']['mac']
 opts << '4.3' if node['sikulix']['option']['system']['linux']
-opts << '5' if node['sikulix']['option']['remote_server']
+opts << '5' if node['sikulix']['option']['remoteserver']
 
 batch 'setup_sikulix' do
   code <<-EOH
     java -jar "#{sikulixsetup_path}" options #{opts.join(' ')}
   EOH
+  not_if { ::Dir.exist?("#{node['sikulix']['home']}/libs") }
 end
