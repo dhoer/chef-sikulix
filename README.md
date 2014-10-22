@@ -26,7 +26,7 @@ Installs SikuliX via SikuliX Setup.
 Set option attributes in your attributes file, such as:
 
 ```ruby
-node.set['sikulix']['option']['java_api'] = true
+node['sikulix']['option']['java_api'] = true
 ```
 
 Include the sikulix default recipe (or include sikulix in your run list):
@@ -39,43 +39,44 @@ include_recipe 'sikulix::default'
 
 Pack1: I want SikuliX, containing the Sikuli IDE and allowing to run Sikuli scripts from commandline.
 
-- `node.set['sikulix']['option']['ide_scripting']['jython']` - Default `false`.
-- `node.set['sikulix']['option']['ide_scripting']['jruby']` - Default `false`.
-- `node.set['sikulix']['option']['ide_scripting']['jruby_addons']` - Rspec, Cucumber, ... Default `false`.
+- `node['sikulix']['option']['ide_scripting']['jython']` - Python language level 2.7. Default `false`.
+- `node['sikulix']['option']['ide_scripting']['jruby']` - Ruby language level 1.9 and 2.0. Default `false`.
+- `node['sikulix']['option']['ide_scripting']['jruby_addons']` - Rspec, Cucumber, ... Default `false`.
 
 Pack2: I want to develop in Java, Jython or other Java aware scripting language using NetBeans, Eclipse, or other IDE's.
 
-- `node.set['sikulix']['option']['java_api']` - Default `false`.  
+- `node['sikulix']['option']['java_api']` - Default `false`.  
 
 For Mac and Windows only: I plan to use the Tesseract based OCR features (You Should know what you are doing!).
 
-- `node.set['sikulix']['option']['tesseract_ocr']` - Default `false`. 
+- `node['sikulix']['option']['tesseract_ocr']` - Default `false`. 
 
 I want the packages to be usable on Windows, Mac, Linux (they contain the stuff for all systems - one pack for all).
 With this option not selected, the setup process will only add system specific native stuff (Windows: support for
 both Java 32-Bit and Java 64-Bit is added).
 
-- `node.set['sikulix']['option']['system']['all']` - Default `false`. 
-- `node.set['sikulix']['option']['system']['windows']` - Default `false`. 
-- `node.set['sikulix']['option']['system']['mac']` - Default `false`. 
-- `node.set['sikulix']['option']['system']['linux']` - Default `false`. 
+- `node['sikulix']['option']['system']['all']` - Default `false`. 
+- `node['sikulix']['option']['system']['windows']` - Default `false`. 
+- `node['sikulix']['option']['system']['mac']` - Default `false`. 
+- `node['sikulix']['option']['system']['linux']` - Default `false`. 
 
 I want to try the experimental Sikuli Remote feature (getting sikulixremoteserver.jar).
 
-- `node.set['sikulix']['option']['remoteserver']` - Default `false`. 
+- `node['sikulix']['option']['remoteserver']` - Default `false`. 
 
 
 ### Remote Server
 
-Install remote server via SikuliX Setup and run it in the foreground on Windows.
+Install remote server via SikuliX Setup and run it in the foreground on Windows. 
+Note that remote server is experimental.
 
 #### Attributes
 
-- `node.set['sikulix']['remoteserver']['domain']` - Domain of account to use for automatic logon (optional).
-- `node.set['sikulix']['remoteserver']['username']` - Username of account to use for automatic logon. 
-- `node.set['sikulix']['remoteserver']['password']` - Password of account to use for automatic logon.
-Note: Password is stored and displayed in the registry editor in plain, unencrypted text.
-- `node.set['sikulix']['remoteserver']['port']` - Defaults to `4041`.
+- `node['sikulix']['remoteserver']['domain']` - Domain of account to use for automatic logon (optional).
+- `node['sikulix']['remoteserver']['username']` - Username of account to use for automatic logon. 
+- `node['sikulix']['remoteserver']['password']` - Password of account to use for automatic logon.
+Password is stored and displayed in the registry editor in plain, unencrypted text.
+- `node['sikulix']['remoteserver']['port']` - Defaults to `4041`.
 
 ## Getting Help
 

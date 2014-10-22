@@ -17,12 +17,12 @@ file cmd do
   content %(java -jar "#{node['sikulix']['home']}/sikulixremoteserver.jar" #{node['sikulix']['remoteserver']['port']})
   action :create
   not_if { ::File.exist?(cmd) }
+  notifies :request, 'windows_reboot[run sikulixremoteserver in foreground]'
 end
 
 windows_shortcut startup do
   target cmd
   cwd node['sikulix']['home']
-  notifies :request, 'windows_reboot[run sikulixremoteserver in foreground]'
   action :create
 end
 
