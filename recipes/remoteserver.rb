@@ -1,4 +1,4 @@
-node.set['sikulix']['option']['remoteserver'] = true
+node.set['sikulix']['setup']['remoteserver'] = true
 
 include_recipe 'sikulix::default'
 
@@ -14,10 +14,11 @@ end
 cmd = "#{bin}/sikulixremoteserver.cmd"
 
 file cmd do
-  content %(java -jar "#{node['sikulix']['home']}/sikulixremoteserver.jar" #{node['sikulix']['remoteserver']['port']})
+  content "java #{node['sikulix']['remoteserver']['jvm_args']} -jar "\
+    "\"#{node['sikulix']['home']}/sikulixremoteserver.jar\" #{node['sikulix']['remoteserver']['port']}"
   action :create
   not_if { ::File.exist?(cmd) }
-  notifies :request, 'windows_reboot[run sikulixremoteserver in foreground]'
+  notifies :request, 'windows_reboot[Reboot to start sikulixremoteserver]'
 end
 
 windows_shortcut startup do
@@ -50,7 +51,7 @@ end
 
 include_recipe 'windows::reboot_handler'
 
-windows_reboot 'run sikulixremoteserver in foreground' do
+windows_reboot 'Reboot to start sikulixremoteserver' do
   reason 'Reboot to start sikulixremoteserver'
   timeout node['windows']['reboot_timeout']
   action :nothing

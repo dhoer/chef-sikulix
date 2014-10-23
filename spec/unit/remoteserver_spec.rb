@@ -23,8 +23,8 @@ describe 'sikulix::remoteserver' do
   end
 
   it 'executes sikulix setup with java_api option' do
-    expect(chef_run).to run_batch('setup_sikulix').with(
-      code: %r{java -jar "C:/sikulix/sikulixsetup.jar" options 5})
+    expect(chef_run).to run_batch('sikulix_setup').with(
+      code: %r{java -Xmx128m -jar "C:/sikulix/sikulixsetup.jar" options 5})
   end
 
   it 'creates sikulix bin directory' do
@@ -33,7 +33,7 @@ describe 'sikulix::remoteserver' do
 
   it 'creates sikulix cmd file' do
     expect(chef_run).to create_file('C:/sikulix/bin/sikulixremoteserver.cmd').with(
-      content: 'java -jar "C:/sikulix/sikulixremoteserver.jar" 4041'
+      content: 'java  -jar "C:/sikulix/sikulixremoteserver.jar" 4041'
     )
   end
 
@@ -52,7 +52,7 @@ describe 'sikulix::remoteserver' do
   end
 
   it 'reboots windows server' do
-    expect(chef_run).to_not request_windows_reboot('run sikulixremoteserver in foreground').with(
+    expect(chef_run).to_not request_windows_reboot('Reboot to start sikulixremoteserver').with(
       timeout: 60
     )
   end

@@ -2,9 +2,10 @@
 
 ## 1.0.0
   
-- Changed all option attribute defaults to false
-- Placed guard on setup to run only once
-- Added Remote Server
+- Added support for Remote Server
+- Refactored Setup attribute names
+- Placed guard on Setup to run only once
+- Fixed memory bug with Setup
 
 ## 0.1.0
 

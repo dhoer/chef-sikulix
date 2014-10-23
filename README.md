@@ -11,7 +11,8 @@ This cookbook installs SikuliX (http://www.sikulix.com/) via SikuliX Setup. Remo
 
 ### Platform
 
-- Windows Server 2012 R2
+- Windows Server 2012 (R1, R2)
+- Windows Server 2008 (R1, R2)
 
 ### Cookbooks
 
@@ -23,10 +24,10 @@ This cookbook installs SikuliX (http://www.sikulix.com/) via SikuliX Setup. Remo
 
 Installs SikuliX via SikuliX Setup.
 
-Set option attributes in your attributes file, such as:
+Set setup attributes in your attributes file, such as:
 
 ```ruby
-node['sikulix']['option']['java_api'] = true
+node['sikulix']['setup']['java_api'] = true
 ```
 
 Include the sikulix default recipe (or include sikulix in your run list):
@@ -39,43 +40,48 @@ include_recipe 'sikulix::default'
 
 Pack1: I want SikuliX, containing the Sikuli IDE and allowing to run Sikuli scripts from commandline.
 
-- `node['sikulix']['option']['ide_scripting']['jython']` - Python language level 2.7. Default `false`.
-- `node['sikulix']['option']['ide_scripting']['jruby']` - Ruby language level 1.9 and 2.0. Default `false`.
-- `node['sikulix']['option']['ide_scripting']['jruby_addons']` - Rspec, Cucumber, ... Default `false`.
+- `node['sikulix']['setup']['ide_scripting']['jython']` - Python language level 2.7. Default `false`.
+- `node['sikulix']['setup']['ide_scripting']['jruby']` - Ruby language level 1.9 and 2.0. Default `false`.
+- `node['sikulix']['setup']['ide_scripting']['jruby_addons']` - Rspec, Cucumber, ... Default `false`.
 
 Pack2: I want to develop in Java, Jython or other Java aware scripting language using NetBeans, Eclipse, or other IDE's.
 
-- `node['sikulix']['option']['java_api']` - Default `false`.  
+- `node['sikulix']['setup']['java_api']` - Default `false`.  
 
 For Mac and Windows only: I plan to use the Tesseract based OCR features (You Should know what you are doing!).
 
-- `node['sikulix']['option']['tesseract_ocr']` - Default `false`. 
+- `node['sikulix']['setup']['tesseract_ocr']` - Default `false`. 
 
 I want the packages to be usable on Windows, Mac, Linux (they contain the stuff for all systems - one pack for all).
-With this option not selected, the setup process will only add system specific native stuff (Windows: support for
+With these options not selected, the setup process will only add system specific native stuff (Windows: support for
 both Java 32-Bit and Java 64-Bit is added).
 
-- `node['sikulix']['option']['system']['all']` - Default `false`. 
-- `node['sikulix']['option']['system']['windows']` - Default `false`. 
-- `node['sikulix']['option']['system']['mac']` - Default `false`. 
-- `node['sikulix']['option']['system']['linux']` - Default `false`. 
+- `node['sikulix']['setup']['system']['all']` - Default `false`. 
+- `node['sikulix']['setup']['system']['windows']` - Default `false`. 
+- `node['sikulix']['setup']['system']['mac']` - Default `false`. 
+- `node['sikulix']['setup']['system']['linux']` - Default `false`. 
 
 I want to try the experimental Sikuli Remote feature (getting sikulixremoteserver.jar).
 
-- `node['sikulix']['option']['remoteserver']` - Default `false`. 
+- `node['sikulix']['setup']['remoteserver']` - Default `false`. 
 
+Other:
+
+- `node['sikulix']['setup']['jvm_args']` - Default `-Xmx128m`.
 
 ### Remote Server
 
-Install remote server via SikuliX Setup and run it in the foreground on Windows. 
-Note that remote server is experimental.
+Installs SikuliX Remote Server via SikuliX Setup and runs it in the foreground on Windows. 
+
+**Note that Remote Server is experimental.**
 
 #### Attributes
 
 - `node['sikulix']['remoteserver']['domain']` - Domain of account to use for automatic logon (optional).
 - `node['sikulix']['remoteserver']['username']` - Username of account to use for automatic logon. 
 - `node['sikulix']['remoteserver']['password']` - Password of account to use for automatic logon.
-Password is stored and displayed in the registry editor in plain, unencrypted text.
+Note the password is stored and displayed in the registry editor in plain, unencrypted text.
+- `node['sikulix']['remoteserver']['jvm_args']` - JVM arguments (optional).
 - `node['sikulix']['remoteserver']['port']` - Defaults to `4041`.
 
 ## Getting Help

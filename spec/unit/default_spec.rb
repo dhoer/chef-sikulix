@@ -3,7 +3,7 @@ require 'spec_helper'
 describe 'sikulix::default' do
   let(:chef_run) do
     ChefSpec::SoloRunner.new do |node|
-      node.set['sikulix']['option']['java_api'] = true
+      node.set['sikulix']['setup']['java_api'] = true
     end.converge(described_recipe)
   end
 
@@ -17,7 +17,7 @@ describe 'sikulix::default' do
   end
 
   it 'executes sikulix setup with java_api option' do
-    expect(chef_run).to run_batch('setup_sikulix').with(
-      code: %r{java -jar "C:/sikulix/sikulixsetup.jar" options 2})
+    expect(chef_run).to run_batch('sikulix_setup').with(
+      code: %r{java -Xmx128m -jar "C:/sikulix/sikulixsetup.jar" options 2})
   end
 end
