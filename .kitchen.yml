@@ -27,6 +27,9 @@ suites:
             "java_api": true,
             "tesseract_ocr": true,
             "system_all": true,
+            "system_windows": false,
+            "system_mac": false,
+            "system_linux": false,
             "remoteserver": true
           }
         }
