@@ -1,11 +1,16 @@
 # SikuliX Changelog
 
+## 2.0.0
+
+- Add ubuntu support
+- Refactor attribute names
+
 ## 1.0.0
   
-- Added support for Remote Server
-- Refactored Setup attribute names
-- Placed guard on Setup to run only once
-- Fixed memory bug with Setup
+- Add support for Remote Server
+- Refactor Setup attribute names
+- Place guard on Setup to run only once
+- Fix memory bug with Setup
 
 ## 0.1.0
 

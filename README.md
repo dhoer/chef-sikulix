@@ -56,18 +56,15 @@ I want the packages to be usable on Windows, Mac, Linux (they contain the stuff 
 With these options not selected, the setup process will only add system specific native stuff (Windows: support for
 both Java 32-Bit and Java 64-Bit is added).
 
-- `node['sikulix']['setup']['system']['all']` - Default `false`. 
-- `node['sikulix']['setup']['system']['windows']` - Default `false`. 
-- `node['sikulix']['setup']['system']['mac']` - Default `false`. 
-- `node['sikulix']['setup']['system']['linux']` - Default `false`. 
+- `node['sikulix']['setup']['system_all']` - Default `false`. 
+- `node['sikulix']['setup']['system_windows']` - Default `false`. 
+- `node['sikulix']['setup']['system_mac']` - Default `false`. 
+- `node['sikulix']['setup']['system_linux']` - Default `false`. 
 
 I want to try the experimental Sikuli Remote feature (getting sikulixremoteserver.jar).
 
 - `node['sikulix']['setup']['remoteserver']` - Default `false`. 
 
-Other:
-
-- `node['sikulix']['setup']['jvm_args']` - Default `-Xmx128m`.
 
 ### Remote Server
 
@@ -77,10 +74,10 @@ Installs SikuliX Remote Server via SikuliX Setup and runs it in the foreground o
 
 #### Attributes
 
-- `node['sikulix']['remoteserver']['domain']` - Domain of account to use for automatic logon (optional).
-- `node['sikulix']['remoteserver']['username']` - Username of account to use for automatic logon. 
-- `node['sikulix']['remoteserver']['password']` - Password of account to use for automatic logon.
+- `node['sikulix']['username']` - Username of account to use for automatic logon. 
+- `node['sikulix']['password']` - Password of account to use for automatic logon.
 Note the password is stored and displayed in the registry editor in plain, unencrypted text.
+- `node['sikulix']['domain']` - Domain of account to use for automatic logon (optional).
 - `node['sikulix']['remoteserver']['jvm_args']` - JVM arguments (optional).
 - `node['sikulix']['remoteserver']['port']` - Defaults to `4041`.
 
