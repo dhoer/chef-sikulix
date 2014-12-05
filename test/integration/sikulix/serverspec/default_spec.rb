@@ -39,39 +39,39 @@ describe 'sikulix_test::default' do
       it { should be_directory }
     end
   else
-    describe file('C:/sikulix/Downloads') do
+    describe file('/usr/local/sikulix/Downloads') do
       it { should be_directory }
     end
 
-    describe file('C:/sikulix/Lib') do
+    describe file('/usr/local/sikulix/Lib') do
       it { should be_directory }
     end
 
-    describe file('C:/sikulix/libs') do
+    describe file('/usr/local/sikulix/libs/tessdata') do
       it { should be_directory }
     end
 
-    describe file('C:/sikulix/runsikulix') do
+    describe file('/usr/local/sikulix/runsikulix') do
       it { should be_file }
     end
 
-    describe file('C:/sikulix/SikuliX-1.1.0-SetupLog.txt') do
+    describe file('/usr/local/sikulix/SikuliX-1.1.0-SetupLog.txt') do
       it { should be_file }
     end
 
-    describe file(' sikulixapi.jar') do
+    # describe file('/usr/local/sikulix/sikulixapi.jar') do
+    #   it { should be_file }
+    # end
+
+    describe file('/usr/local/sikulix/sikulix.jar') do
       it { should be_file }
     end
 
-    describe file('sikulix.jar') do
+    describe file('/usr/local/sikulix/sikulixremoteserver.jar') do
       it { should be_file }
     end
 
-    describe file('sikulixremoteserver.jar') do
-      it { should be_file }
-    end
-
-    describe file('sikulixsetup.jar') do
+    describe file('/usr/local/sikulix/sikulixsetup.jar') do
       it { should be_file }
     end
   end

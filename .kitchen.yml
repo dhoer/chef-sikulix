@@ -6,7 +6,9 @@ provisioner:
   name: chef_solo
 
 platforms:
+#  - name: ubuntu-12.04
   - name: ubuntu-14.04
+#  - name: ubuntu-14.10
 
 suites:
   - name: sikulix
@@ -15,17 +17,14 @@ suites:
     attributes:
       {
         "java": {
-          "jdk_version": "7",
-          "windows": {
-            "url": "https://s3.amazonaws.com/prsnpublic/jdk-7u72-windows-i586.exe"
-          }
+          "jdk_version": "7"
         },
         "sikulix": {
           "setup": {
             "ide_jython": true,
             "ide_jruby": true,
             "ide_jruby_addons": true,
-            "java_api": false,
+            "java_api": true,
             "tesseract_ocr": true,
             "system_all": true,
             "remoteserver": true

@@ -1,2 +1,2 @@
 include_recipe 'java'
-include_recipe 'sikulix::default'
+include_recipe 'sikulix'

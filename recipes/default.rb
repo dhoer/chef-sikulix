@@ -1,14 +1,12 @@
 if platform_family?('debian')
   package 'libopencv-dev'
   package 'libtesseract-dev'
-  user node['sikulix']['username']
 end
 
 home = platform?('windows') ? node['sikulix']['windows']['home'] : node['sikulix']['linux']['home']
 
 directory home do
   recursive true
-  owner node['sikulix']['username'] unless platform?('windows')
   action :create
 end
 

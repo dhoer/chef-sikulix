@@ -41,10 +41,6 @@ describe 'sikulix_test::default' do
       expect(chef_run).to install_package('libtesseract-dev')
     end
 
-    it 'creates sikulix user' do
-      expect(chef_run).to create_user('sikulix')
-    end
-
     it 'creates sikulix home directory' do
       expect(chef_run).to create_directory('/usr/local/sikulix')
     end

@@ -1,9 +1,5 @@
 default['sikulix']['src'] = 'http://nightly.sikuli.de/sikulixsetup-1.1.0.jar'
 
-default['sikulix']['username'] = 'sikulix'
-default['sikulix']['password'] = nil
-default['sikulix']['domain'] = nil
-
 default['sikulix']['windows']['home'] = 'C:/sikulix'
 default['sikulix']['windows']['java'] = 'C:/Windows/System32/java.exe'
 
@@ -27,3 +23,9 @@ default['sikulix']['setup']['remoteserver'] = false # (5)
 
 default['sikulix']['remoteserver']['jvm_args'] = nil
 default['sikulix']['remoteserver']['port'] = 4041
+
+# Windows Auto-Login
+
+default['sikulix']['username'] = nil
+default['sikulix']['password'] = nil
+default['sikulix']['domain'] = nil

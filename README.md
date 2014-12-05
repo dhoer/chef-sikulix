@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/dhoer/chef-sikulix.svg)](https://travis-ci.org/dhoer/chef-sikulix)
 
-This cookbook installs SikuliX (http://www.sikulix.com/) via SikuliX Setup and Remote Server.
+This cookbook installs SikuliX (http://www.sikulix.com/).
 
 ## Requirements
 
