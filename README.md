@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/dhoer/chef-sikulix.svg)](https://travis-ci.org/dhoer/chef-sikulix)
 
-This cookbook installs SikuliX (http://www.sikulix.com/) via SikuliX Setup. Remote server is also installed.
+This cookbook installs SikuliX (http://www.sikulix.com/) via SikuliX Setup and Remote Server.
 
 ## Requirements
 
@@ -11,8 +11,8 @@ This cookbook installs SikuliX (http://www.sikulix.com/) via SikuliX Setup. Remo
 
 ### Platform
 
-- Windows Server 2012 (R1, R2)
-- Windows Server 2008 (R1, R2)
+- Ubuntu - Setup only
+- Windows
 
 ### Cookbooks
 
@@ -40,9 +40,9 @@ include_recipe 'sikulix::default'
 
 Pack1: I want SikuliX, containing the Sikuli IDE and allowing to run Sikuli scripts from commandline.
 
-- `node['sikulix']['setup']['ide_scripting']['jython']` - Python language level 2.7. Default `false`.
-- `node['sikulix']['setup']['ide_scripting']['jruby']` - Ruby language level 1.9 and 2.0. Default `false`.
-- `node['sikulix']['setup']['ide_scripting']['jruby_addons']` - Rspec, Cucumber, ... Default `false`.
+- `node['sikulix']['setup']['ide_jython']` - Python language level 2.7. Default `false`.
+- `node['sikulix']['setup']['ide_jruby']` - Ruby language level 1.9 and 2.0. Default `false`.
+- `node['sikulix']['setup']['ide_jruby_addons']` - Rspec, Cucumber, ... Default `false`.
 
 Pack2: I want to develop in Java, Jython or other Java aware scripting language using NetBeans, Eclipse, or other IDE's.
 

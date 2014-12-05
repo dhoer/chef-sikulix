@@ -1,0 +1,34 @@
+---
+driver:
+  name: vagrant
+
+provisioner:
+  name: chef_solo
+
+platforms:
+  - name: ubuntu-14.04
+
+suites:
+  - name: sikulix
+    run_list:
+      - recipe[sikulix_test::default]
+    attributes:
+      {
+        "java": {
+          "jdk_version": "7",
+          "windows": {
+            "url": "https://s3.amazonaws.com/prsnpublic/jdk-7u72-windows-i586.exe"
+          }
+        },
+        "sikulix": {
+          "setup": {
+            "ide_jython": true,
+            "ide_jruby": true,
+            "ide_jruby_addons": true,
+            "java_api": false,
+            "tesseract_ocr": true,
+            "system_all": true,
+            "remoteserver": true
+          }
+        }
+      }
