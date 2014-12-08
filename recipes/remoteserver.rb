@@ -9,13 +9,10 @@ if platform?('windows')
     '\\Start Menu\\Programs\\Startup\\sikulixremoteserver.lnk'
 
   home = platform?('windows') ? node['sikulix']['windows']['home'] : node['sikulix']['linux']['home']
-  bin = "#{home}/bin"
 
-  directory bin do
-    action :create
-  end
+  directory "#{home}/bin"
 
-  cmd = "#{bin}/sikulixremoteserver.cmd"
+  cmd = "#{home}/bin/sikulixremoteserver.cmd"
 
   file cmd do
     content "\"#{java}\" #{node['sikulix']['remoteserver']['jvm_args']} -jar "\

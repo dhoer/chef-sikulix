@@ -1,8 +1,3 @@
-if platform_family?('debian')
-  package 'libopencv-dev'
-  package 'libtesseract-dev'
-end
-
 home = platform?('windows') ? node['sikulix']['windows']['home'] : node['sikulix']['linux']['home']
 
 directory home do
@@ -10,10 +5,15 @@ directory home do
   action :create
 end
 
-sikulixsetup_path = "#{home}/sikulixsetup.jar"
+if platform_family?('debian')
+  package 'unzip'
+  directory "#{home}/libs"
+  include_recipe 'sikulix::__libvisionproxy'
+  include_recipe 'sikulix::__libjxgrabkey'
+end
 
-remote_file sikulixsetup_path do
-  source node['sikulix']['src']
+remote_file "#{home}/sikulixsetup.jar" do
+  source node['sikulix']['src']['sikulixsetup']
 end
 
 opts = []
@@ -29,16 +29,5 @@ opts << '4.3' if node['sikulix']['setup']['system_linux']
 opts << '5' if node['sikulix']['setup']['remoteserver']
 
 java = platform?('windows') ? node['sikulix']['windows']['java'] : node['sikulix']['linux']['java']
-cmd = "\"#{java}\" -jar \"#{sikulixsetup_path}\" options #{opts.join(' ')}"
 
-batch 'sikulix_setup' do
-  code cmd
-  action :run
-  only_if { platform?('windows') }
-end
-
-execute 'sikulix_setup' do
-  command cmd
-  action :run
-  not_if { platform?('windows') }
-end
+execute "\"#{java}\" -jar \"#{home}/sikulixsetup.jar\" options #{opts.join(' ')}"

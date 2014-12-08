@@ -1,4 +1,6 @@
-default['sikulix']['src'] = 'http://nightly.sikuli.de/sikulixsetup-1.1.0.jar'
+default['sikulix']['src']['sikulixsetup'] = 'http://nightly.sikuli.de/sikulixsetup-1.1.0.jar'
+default['sikulix']['src']['libvisionproxy'] = 'https://launchpad.net/sikuli/sikulix/1.0.1/+download/Sikuli-1.0.1-Supplemental-LinuxVisionProxy.zip'
+default['sikulix']['src']['libjxgrabkey'] = 'http://sourceforge.net/projects/jxgrabkey/files/jxgrabkey/0.3.2/jxgrabkey-0.3.2_src.tar.bz2/download'
 
 default['sikulix']['windows']['home'] = 'C:/sikulix'
 default['sikulix']['windows']['java'] = 'C:/Windows/System32/java.exe'

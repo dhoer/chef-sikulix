@@ -9,6 +9,7 @@ version '2.0.0'
 supports 'windows'
 supports 'ubuntu'
 
-suggests 'aws', '~> 2.5'
-suggests 'java', '~> 1.29' # https://github.com/agileorbit-cookbooks/java#windows
+suggests 'apt', '~> 2.6'
+suggests 'aws', '~> 2.5' # https://github.com/agileorbit-cookbooks/java#windows
+suggests 'java', '~> 1.29'
 suggests 'windows', '~> 1.34'

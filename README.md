@@ -9,13 +9,19 @@ This cookbook installs SikuliX (http://www.sikulix.com/).
 - Java must be installed.  Remote server requires Java 8 or greater.
 - Chef 11.14.2 and Ruby 1.9.3 or higher.
 
-### Platform
+### Platforms
 
 - Ubuntu - Setup only
 - Windows
 
 ### Cookbooks
 
+These cookbooks are referenced with suggests instead of depends, so be sure to upload the cookbook that applies to 
+target platform.
+
+- apt
+- aws
+- java
 - windows
 
 ## Recipes
@@ -74,10 +80,10 @@ Installs SikuliX Remote Server via SikuliX Setup and runs it in the foreground o
 
 #### Attributes
 
-- `node['sikulix']['username']` - Username of account to use for automatic logon. 
-- `node['sikulix']['password']` - Password of account to use for automatic logon.
-Note the password is stored and displayed in the registry editor in plain, unencrypted text.
-- `node['sikulix']['domain']` - Domain of account to use for automatic logon (optional).
+- `node['sikulix']['username']` - Username of account to use for automatic logon on Windows. 
+- `node['sikulix']['password']` - Password of account to use for automatic logon on Windows.
+Note that password is stored and displayed in the registry editor in plain, unencrypted text. 
+- `node['sikulix']['domain']` - Domain of account to use for automatic logon on Windows (optional).
 - `node['sikulix']['remoteserver']['jvm_args']` - JVM arguments (optional).
 - `node['sikulix']['remoteserver']['port']` - Defaults to `4041`.
 
