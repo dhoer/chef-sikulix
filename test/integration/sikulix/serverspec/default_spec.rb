@@ -1,7 +1,6 @@
 require 'serverspec_helper'
 
 describe 'sikulix_test::default' do
-
   if os[:family] == 'windows'
     describe file('C:/sikulix/Downloads') do
       it { should be_directory }

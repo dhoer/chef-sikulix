@@ -10,6 +10,6 @@ supports 'windows'
 supports 'ubuntu'
 
 suggests 'apt', '~> 2.6'
-suggests 'aws', '~> 2.5' # https://github.com/agileorbit-cookbooks/java#windows
 suggests 'java', '~> 1.29'
+suggests 'aws', '~> 2.5' # https://github.com/agileorbit-cookbooks/java#windows
 suggests 'windows', '~> 1.34'

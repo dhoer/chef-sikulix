@@ -5,7 +5,7 @@ directory home do
   action :create
 end
 
-if platform_family?('debian')
+unless platform?('windows')
   package 'unzip'
   directory "#{home}/libs"
   include_recipe 'sikulix::__libvisionproxy'

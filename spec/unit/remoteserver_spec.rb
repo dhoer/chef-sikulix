@@ -63,5 +63,4 @@ describe 'sikulix_test::remoteserver' do
       )
     end
   end
-
 end
