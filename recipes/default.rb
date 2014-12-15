@@ -2,6 +2,7 @@ home = platform?('windows') ? node['sikulix']['windows']['home'] : node['sikulix
 
 directory home do
   recursive true
+  mode '0775'
   action :create
 end
 
