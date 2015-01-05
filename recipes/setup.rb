@@ -7,7 +7,7 @@ directory home do
   action :create
 end
 
-node['xvfb']['packages']['debian'].each do |pkg|
+node['sikulix']['packages']['debian'].each do |pkg|
   package(pkg)
 end if platform_family?('debian')
 
