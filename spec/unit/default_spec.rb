@@ -138,10 +138,10 @@ describe 'sikulix_test::default' do
       end
     end
 
-    context 'other' do
+    context 'centos' do
       let(:chef_run) { ChefSpec::Runner.new(platform: 'centos', version: '7.0').converge(described_recipe) }
 
-      it 'warns if non-windows platform' do
+      it 'warns if platform not supported' do
         expect(chef_run).to write_log('SikuliX Remote Server cannot be installed on this platform.').with(
             level: :warn
           )
