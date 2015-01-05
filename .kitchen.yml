@@ -8,6 +8,10 @@ provisioner:
 platforms:
 #  - name: ubuntu-12.04
   - name: ubuntu-14.04
+    driver:
+      network:
+      - ["forwarded_port", {guest: 4041, host: 4041}]
+      - ["private_network", {ip: "192.168.33.80"}]
 
 suites:
   - name: sikulix
@@ -17,14 +21,15 @@ suites:
       java:
         jdk_version: '7'
       sikulix:
-        setup:
+        setup: {
           ide_jython: true,
           ide_jruby: true,
           ide_jruby_addons: true,
           java_api: true,
           tesseract_ocr: true,
-          system_all: true,
+          system_all: false,
           system_windows: false,
           system_mac: false,
-          system_linux: false,
+          system_linux: true,
           remoteserver: true
+        }

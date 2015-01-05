@@ -1,6 +1,3 @@
-package 'libopencv-dev'
-package 'libtesseract-dev'
-
 home = node['sikulix']['linux']['home']
 zip = "#{home}/Sikuli-1.0.1-Supplemental-LinuxVisionProxy.zip"
 

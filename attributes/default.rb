@@ -8,6 +8,8 @@ default['sikulix']['windows']['java'] = 'C:/Windows/System32/java.exe'
 default['sikulix']['linux']['home'] = '/usr/local/sikulix'
 default['sikulix']['linux']['java'] = '/usr/bin/java'
 
+default['sikulix']['packages']['debian'] = %w(wmctrl libopencv-dev libtesseract-dev)
+
 # Setup
 
 default['sikulix']['setup']['ide_jython'] = false # (1.1)
@@ -25,6 +27,7 @@ default['sikulix']['setup']['remoteserver'] = false # (5)
 
 default['sikulix']['remoteserver']['jvm_args'] = nil
 default['sikulix']['remoteserver']['port'] = 4041
+default['sikulix']['remoteserver']['display'] = ':0'
 
 # Windows Auto-Login
 

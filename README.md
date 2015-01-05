@@ -7,26 +7,23 @@ This cookbook installs SikuliX (http://www.sikulix.com/).
 ## Requirements
 
 - Java must be installed.  Remote server requires Java 8 or greater.
-- Chef 11.14.2 and Ruby 1.9.3 or higher.
+- Chef 11 and Ruby 1.9.3 or higher.
 
 ### Platforms
 
-- Ubuntu - Setup only
+- Ubuntu
 - Windows
 
 ### Cookbooks
 
-These cookbooks are referenced with suggests instead of depends, so be sure to upload the cookbook that applies to 
-target platform.
+These cookbooks are referenced with suggests instead of depends, so be sure to include the cookbooks that apply:
 
-- apt
-- aws
-- java
-- windows
+- apt - Debian platforms only
+- aws - Windows platform only (dependency of java cookbook)
+- java - All platforms
+- windows - Windows platform only
 
-## Recipes
-
-### Install
+## Usage
 
 Installs SikuliX via SikuliX Setup.
 
@@ -42,7 +39,7 @@ Include the sikulix default recipe (or include sikulix in your run list):
 include_recipe 'sikulix::default'
 ```
 
-#### Attributes
+## Attributes
 
 Pack1: I want SikuliX, containing the Sikuli IDE and allowing to run Sikuli scripts from commandline.
 
@@ -67,25 +64,20 @@ both Java 32-Bit and Java 64-Bit is added).
 - `node['sikulix']['setup']['system_mac']` - Default `false`. 
 - `node['sikulix']['setup']['system_linux']` - Default `false`. 
 
-I want to try the experimental Sikuli Remote feature (getting sikulixremoteserver.jar).
+I want to install Sikuli Remote Server (getting sikulixremoteserver.jar) as a service (runs in foreground on
+Windows).
 
-- `node['sikulix']['setup']['remoteserver']` - Default `false`. 
+- `node['sikulix']['setup']['remoteserver']` - Default `false`.
 
+### Additional Attributes for Remote Server
 
-### Remote Server
-
-Installs SikuliX Remote Server via SikuliX Setup and runs it in the foreground on Windows. 
-
-**Note that Remote Server is experimental.**
-
-#### Attributes
-
-- `node['sikulix']['username']` - Username of account to use for automatic logon on Windows. 
-- `node['sikulix']['password']` - Password of account to use for automatic logon on Windows.
-Note that password is stored and displayed in the registry editor in plain, unencrypted text. 
-- `node['sikulix']['domain']` - Domain of account to use for automatic logon on Windows (optional).
-- `node['sikulix']['remoteserver']['jvm_args']` - JVM arguments (optional).
 - `node['sikulix']['remoteserver']['port']` - Defaults to `4041`.
+- `node['sikulix']['remoteserver']['jvm_args']` - JVM arguments (optional).
+- `node['sikulix']['remoteserver']['display']` - Linux only.  Defaults to `:0`.
+- `node['sikulix']['domain']` - Windows only. Domain of account to use for automatic logon (optional).
+- `node['sikulix']['username']` - Windows only. Username of account to use for automatic logon.
+- `node['sikulix']['password']` - Windows only. Password of account to use for automatic logon.
+Note that password is stored and displayed in the registry editor in plain, unencrypted text. 
 
 ## Getting Help
 

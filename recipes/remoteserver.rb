@@ -1,29 +1,24 @@
+home = platform?('windows') ? node['sikulix']['windows']['home'] : node['sikulix']['linux']['home']
 java = platform?('windows') ? node['sikulix']['windows']['java'] : node['sikulix']['linux']['java']
 
-if platform?('windows')
-  node.set['sikulix']['setup']['remoteserver'] = true
+if platform_family?('windows')
+  directory "#{home}/bin"
 
-  include_recipe 'sikulix::default'
+  cmd_file = "#{home}/bin/sikulixremoteserver.cmd"
+
+  file cmd_file do
+    content "\"#{java}\" #{node['sikulix']['remoteserver']['jvm_args']} -jar "\
+      "\"#{home}/sikulixremoteserver.jar\" #{node['sikulix']['remoteserver']['port']}"
+    action :create
+    not_if { ::File.exist?(cmd_file) }
+    notifies :request, 'windows_reboot[Reboot to start sikulixremoteserver]' if platform?('windows')
+  end
 
   startup = "C:\\Users\\#{node['sikulix']['username']}\\AppData\\Roaming\\Microsoft\\Windows"\
     '\\Start Menu\\Programs\\Startup\\sikulixremoteserver.lnk'
 
-  home = platform?('windows') ? node['sikulix']['windows']['home'] : node['sikulix']['linux']['home']
-
-  directory "#{home}/bin"
-
-  cmd = "#{home}/bin/sikulixremoteserver.cmd"
-
-  file cmd do
-    content "\"#{java}\" #{node['sikulix']['remoteserver']['jvm_args']} -jar "\
-      "\"#{home}/sikulixremoteserver.jar\" #{node['sikulix']['remoteserver']['port']}"
-    action :create
-    not_if { ::File.exist?(cmd) }
-    notifies :request, 'windows_reboot[Reboot to start sikulixremoteserver]'
-  end
-
   windows_shortcut startup do
-    target cmd
+    target cmd_file
     cwd home
     action :create
   end
@@ -56,6 +51,23 @@ if platform?('windows')
     reason 'Reboot to start sikulixremoteserver'
     timeout node['windows']['reboot_timeout']
     action :nothing
+  end
+elsif platform_family?('debian')
+  template '/etc/init.d/sikulixremoteserver' do
+    source 'debian.erb'
+    mode '0755'
+    variables(
+      jar: "#{home}/sikulixremoteserver.jar",
+      port: node['sikulix']['remoteserver']['port'],
+      display: node['sikulix']['remoteserver']['display'],
+      java: java,
+      jvm_args: node['sikulix']['remoteserver']['jvm_args']
+    )
+    notifies(:restart, 'service[sikulixremoteserver]')
+  end
+
+  service 'sikulixremoteserver' do
+    action [:enable, :start]
   end
 else
   log 'SikuliX Remote Server cannot be installed on this platform.' do

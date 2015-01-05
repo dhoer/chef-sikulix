@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'sikulix::default' do
+describe 'sikulix::setup' do
   context 'windows' do
     let(:chef_run) do
       ChefSpec::Runner.new(platform: 'windows', version: '2008R2') do |node|
@@ -26,7 +26,7 @@ describe 'sikulix::default' do
     end
   end
 
-  context 'linux' do
+  context 'debian' do
     let(:chef_run) do
       ChefSpec::Runner.new(platform: 'ubuntu', version: '14.04') do |node|
         node.set['sikulix']['setup']['java_api'] = true
