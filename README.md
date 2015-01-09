@@ -6,7 +6,7 @@ This cookbook installs SikuliX (http://www.sikulix.com/).
 
 ## Requirements
 
-- Java must be installed.  Remote server requires Java 8 or greater.
+- Java must be installed.
 - Chef 11 and Ruby 1.9.3 or higher.
 
 ### Platforms
@@ -18,14 +18,10 @@ This cookbook installs SikuliX (http://www.sikulix.com/).
 
 These cookbooks are referenced with suggests instead of depends, so be sure to include the cookbooks that apply:
 
-- apt - Debian platforms only
-- aws - Windows platform only (dependency of java cookbook)
-- java - All platforms
-- windows - Windows platform only
+- apt
+- windows
 
 ## Usage
-
-Installs SikuliX via SikuliX Setup.
 
 Set setup attributes in your attributes file, such as:
 
@@ -33,7 +29,7 @@ Set setup attributes in your attributes file, such as:
 node['sikulix']['setup']['java_api'] = true
 ```
 
-Include the sikulix default recipe (or include sikulix in your run list):
+Include the sikulix default recipe in your run list:
 
 ```ruby
 include_recipe 'sikulix::default'
@@ -45,7 +41,6 @@ Pack1: I want SikuliX, containing the Sikuli IDE and allowing to run Sikuli scri
 
 - `node['sikulix']['setup']['ide_jython']` - Python language level 2.7. Default `false`.
 - `node['sikulix']['setup']['ide_jruby']` - Ruby language level 1.9 and 2.0. Default `false`.
-- `node['sikulix']['setup']['ide_jruby_addons']` - Rspec, Cucumber, ... Default `false`.
 
 Pack2: I want to develop in Java, Jython or other Java aware scripting language using NetBeans, Eclipse, or other IDE's.
 
@@ -63,21 +58,6 @@ both Java 32-Bit and Java 64-Bit is added).
 - `node['sikulix']['setup']['system_windows']` - Default `false`. 
 - `node['sikulix']['setup']['system_mac']` - Default `false`. 
 - `node['sikulix']['setup']['system_linux']` - Default `false`. 
-
-I want to install Sikuli Remote Server (getting sikulixremoteserver.jar) as a service (runs in foreground on
-Windows).
-
-- `node['sikulix']['setup']['remoteserver']` - Default `false`.
-
-### Additional Attributes for Remote Server
-
-- `node['sikulix']['remoteserver']['port']` - Defaults to `4041`.
-- `node['sikulix']['remoteserver']['jvm_args']` - JVM arguments (optional).
-- `node['sikulix']['remoteserver']['display']` - Linux only.  Defaults to `:0`.
-- `node['sikulix']['domain']` - Windows only. Domain of account to use for automatic logon (optional).
-- `node['sikulix']['username']` - Windows only. Username of account to use for automatic logon.
-- `node['sikulix']['password']` - Windows only. Password of account to use for automatic logon.
-Note that password is stored and displayed in the registry editor in plain, unencrypted text. 
 
 ## Getting Help
 

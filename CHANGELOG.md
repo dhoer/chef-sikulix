@@ -3,6 +3,7 @@
 ## 2.0.0
 
 - Add ubuntu support
+- Removed support for JRuby Addons and Remote Server
 - Refactor attribute names
 
 ## 1.0.0

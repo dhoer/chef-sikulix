@@ -6,146 +6,80 @@ describe 'sikulix_test::default' do
     allow(::File).to receive(:exist?) { false }
   end
 
-  context 'setup' do
-    context 'windows' do
-      let(:chef_run) do
-        ChefSpec::Runner.new(platform: 'windows', version: '2008R2') do |node|
-          node.set['java']['windows']['url'] = 'https://s3.amazonaws.com/prsnpublic/jdk-7u72-windows-i586.exe'
-          node.set['sikulix']['setup']['java_api'] = true
-          node.set['sikulix']['username'] = 'username'
-          node.set['silulix']['password'] = 'password'
-        end.converge(described_recipe)
-      end
-
-      it 'creates sikulix home directory' do
-        expect(chef_run).to create_directory('C:/sikulix')
-      end
-
-      it 'downloads sikulix setup' do
-        expect(chef_run).to create_remote_file('C:/sikulix/sikulixsetup.jar').with(
-            source: 'http://nightly.sikuli.de/sikulixsetup-1.1.0.jar'
-          )
-      end
-
-      it 'executes sikulix setup with options' do
-        expect(chef_run).to run_execute(
-          "\"C:/Windows/System32/java.exe\" -jar \"C:/sikulix/sikulixsetup.jar\""\
-          ' options 1.1 1.2 1.3 2 3 4 4.1 4.2 4.3 5'
-        )
-      end
+  context 'windows' do
+    let(:chef_run) do
+      ChefSpec::SoloRunner.new(platform: 'windows', version: '2008R2') do |node|
+        node.set['java']['windows']['url'] = 'https://s3.amazonaws.com/prsnpublic/jdk-7u72-windows-i586.exe'
+        node.set['sikulix']['setup']['java_api'] = true
+        node.set['sikulix']['username'] = 'username'
+        node.set['sikulix']['password'] = 'password'
+      end.converge(described_recipe)
     end
 
-    context 'ubuntu' do
-      let(:chef_run) do
-        ChefSpec::Runner.new(platform: 'ubuntu', version: '14.04') do |node|
-          node.set['sikulix']['setup']['java_api'] = true
-        end.converge(described_recipe)
-      end
+    it 'creates sikulix home directory' do
+      expect(chef_run).to create_directory('C:/sikulix-1.1.0')
+    end
 
-      it 'installs wmctrl package' do
-        expect(chef_run).to install_package('wmctrl')
-      end
+    it 'downloads sikulix setup' do
+      expect(chef_run).to create_remote_file('C:/sikulix-1.1.0/sikulixsetup-1.1.0.jar').with(
+          source: 'http://nightly.sikuli.de/sikulixsetup-1.1.0.jar'
+        )
+    end
 
-      it 'installs libopencv-dev package' do
-        expect(chef_run).to install_package('libopencv-dev')
-      end
+    it 'executes sikulix setup with options' do
+      expect(chef_run).to run_execute(
+          "\"C:/Windows/System32/java.exe\" -jar \"C:/sikulix-1.1.0/sikulixsetup-1.1.0.jar\""\
+        ' options 2'
+        )
+    end
 
-      it 'installs libtesseract-dev package' do
-        expect(chef_run).to install_package('libtesseract-dev')
-      end
-
-      it 'creates sikulix home directory' do
-        expect(chef_run).to create_directory('/usr/local/sikulix')
-      end
-
-      it 'downloads sikulix setup' do
-        expect(chef_run).to create_remote_file('/usr/local/sikulix/sikulixsetup.jar').with(
-            source: 'http://nightly.sikuli.de/sikulixsetup-1.1.0.jar'
-          )
-      end
-
-      it 'executes sikulix setup with java_api option' do
-        expect(chef_run).to run_execute(
-            "\"/usr/bin/java\" -jar \"/usr/local/sikulix/sikulixsetup.jar\""\
-          ' options 1.1 1.2 1.3 2 3 4 4.1 4.2 4.3 5'
-          )
-      end
+    it 'creates sikulix link to home directory' do
+      expect(chef_run).to create_link('C:/sikulix').with(
+          to: 'C:/sikulix-1.1.0'
+        )
     end
   end
 
-  context 'remoteserver' do
-    context 'windows' do
-      let(:chef_run) do
-        ChefSpec::Runner.new(platform: 'windows', version: '2008R2') do |node|
-          node.set['java']['windows']['url'] = 'https://s3.amazonaws.com/prsnpublic/jdk-7u72-windows-i586.exe'
-          node.set['sikulix']['username'] = 'username'
-          node.set['silulix']['password'] = 'password'
-        end.converge(described_recipe)
-      end
-
-      it 'creates sikulix bin directory' do
-        expect(chef_run).to create_directory('C:/sikulix/bin')
-      end
-
-      it 'creates sikulix cmd file' do
-        expect(chef_run).to create_file('C:/sikulix/bin/sikulixremoteserver.cmd').with(
-          content: '"C:/Windows/System32/java.exe"  -jar "C:/sikulix/sikulixremoteserver.jar" 4041'
-        )
-      end
-
-      it 'creates auto login registry_key' do
-        expect(chef_run).to create_registry_key(
-          'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon'
-        )
-      end
-
-      it 'creates firewall rule' do
-        expect(chef_run).to run_execute('Firewall rule sikulixremoteserver for port 4041')
-      end
-
-      it 'creates shortcut to cmd file' do
-        expect(chef_run).to create_windows_shortcut(
-          'C:\Users\username\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\sikulixremoteserver.lnk'
-        )
-      end
-
-      it 'reboots windows server' do
-        expect(chef_run).to_not request_windows_reboot('Reboot to start sikulixremoteserver').with(
-          timeout: 60
-        )
-      end
+  context 'ubuntu' do
+    let(:chef_run) do
+      ChefSpec::SoloRunner.new(platform: 'ubuntu', version: '14.04') do |node|
+        node.set['sikulix']['setup']['java_api'] = true
+      end.converge(described_recipe)
     end
 
-    context 'ubuntu' do
-      let(:chef_run) { ChefSpec::Runner.new(platform: 'ubuntu', version: '14.04').converge(described_recipe) }
-
-      it 'creates init.d' do
-        expect(chef_run).to create_template('/etc/init.d/sikulixremoteserver').with(
-            source: 'debian.erb',
-            mode: '0755',
-            variables: {
-              jar: '/usr/local/sikulix/sikulixremoteserver.jar',
-              port: 4041,
-              display: ':0',
-              java: '/usr/bin/java',
-              jvm_args: nil
-            }
-          )
-      end
-
-      it 'creates service' do
-        expect(chef_run).to start_service('sikulixremoteserver')
-      end
+    it 'installs wmctrl package' do
+      expect(chef_run).to install_package('wmctrl')
     end
 
-    context 'centos' do
-      let(:chef_run) { ChefSpec::Runner.new(platform: 'centos', version: '7.0').converge(described_recipe) }
+    it 'installs libopencv-dev package' do
+      expect(chef_run).to install_package('libopencv-dev')
+    end
 
-      it 'warns if platform not supported' do
-        expect(chef_run).to write_log('SikuliX Remote Server cannot be installed on this platform.').with(
-            level: :warn
-          )
-      end
+    it 'installs libtesseract-dev package' do
+      expect(chef_run).to install_package('libtesseract-dev')
+    end
+
+    it 'creates sikulix home directory' do
+      expect(chef_run).to create_directory('/usr/local/sikulix-1.1.0')
+    end
+
+    it 'downloads sikulix setup' do
+      expect(chef_run).to create_remote_file('/usr/local/sikulix-1.1.0/sikulixsetup-1.1.0.jar').with(
+          source: 'http://nightly.sikuli.de/sikulixsetup-1.1.0.jar'
+        )
+    end
+
+    it 'executes sikulix setup with java_api option' do
+      expect(chef_run).to run_execute(
+          "\"/usr/bin/java\" -jar \"/usr/local/sikulix-1.1.0/sikulixsetup-1.1.0.jar\""\
+        ' options 2'
+        )
+    end
+
+    it 'creates sikulix link to home directory' do
+      expect(chef_run).to create_link('/usr/local/sikulix').with(
+          to: '/usr/local/sikulix-1.1.0'
+        )
     end
   end
 end
