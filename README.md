@@ -1,8 +1,8 @@
 # SikuliX Cookbook
 
-[![Cookbook Version](http://img.shields.io/cookbook/v/chef-sikulix.svg)]
-[![Build Status](http://img.shields.io/travis/dhoer/chef-sikulix.svg)]
-[![GitHub Issues](https://img.shields.io/github/issues-raw/dhoer/chef-sikulix.svg)]
+[![Cookbook Version](http://img.shields.io/cookbook/v/sikulix.svg)][github]
+[![Build Status](http://img.shields.io/travis/dhoer/chef-sikulix.svg)][cookbook]
+[![GitHub Issues](https://img.shields.io/github/issues-raw/dhoer/chef-sikulix.svg)][travis]
 
 This cookbook installs SikuliX (http://www.sikulix.com/).
 
