@@ -6,7 +6,7 @@
 
 [cookbook]: https://supermarket.chef.io/cookbooks/sikulix
 [travis]: https://travis-ci.org/dhoer/chef-sikulix
-[issues]: https://github.com/dhoer/chef-sikulix
+[issues]: https://github.com/dhoer/chef-sikulix/issues
 
 This cookbook installs SikuliX (http://www.sikulix.com/).
 
