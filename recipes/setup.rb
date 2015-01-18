@@ -4,6 +4,7 @@ java = platform?('windows') ? node['sikulix']['windows']['java'] : node['sikulix
 match = /.*\/(.*).jar/.match(node['sikulix']['src']['sikulixsetup']).captures[0]
 v = /.*\-(\d|.*).jar/.match(node['sikulix']['src']['sikulixsetup']).captures[0]
 dir = "#{home}/sikulix-#{v}"
+link = "#{home}/sikulix"
 
 directory dir do
   recursive true
@@ -11,7 +12,7 @@ directory dir do
   action :create
 end
 
-link "#{home}/sikulix" do
+link link do
   to dir
 end
 
@@ -32,5 +33,8 @@ opts << '4' if node['sikulix']['setup']['system_all'] == true
 opts << '4.1' if node['sikulix']['setup']['system_windows'] == true
 opts << '4.2' if node['sikulix']['setup']['system_mac'] == true
 opts << '4.3' if node['sikulix']['setup']['system_linux'] == true
+opts << 'buildv' if node['sikulix']['setup']['buildv'] == true
+opts << 'notest' if node['sikulix']['setup']['notest'] == true
+opts << 'clean' if node['sikulix']['setup']['clean'] == true
 
-execute "\"#{java}\" -jar \"#{dir}/#{match}.jar\" options #{opts.join(' ')}"
+execute "\"#{java}\" -jar \"#{link}/#{match}.jar\" options #{opts.join(' ')}"

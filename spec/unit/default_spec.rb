@@ -28,7 +28,7 @@ describe 'sikulix_test::default' do
 
     it 'executes sikulix setup with options' do
       expect(chef_run).to run_execute(
-          "\"C:/Windows/System32/java.exe\" -jar \"C:/sikulix-1.1.0/sikulixsetup-1.1.0.jar\""\
+          "\"C:/Windows/System32/java.exe\" -jar \"C:/sikulix/sikulixsetup-1.1.0.jar\""\
         ' options 2'
         )
     end
@@ -51,6 +51,10 @@ describe 'sikulix_test::default' do
       expect(chef_run).to install_package('wmctrl')
     end
 
+    it 'installs xdotool package' do
+      expect(chef_run).to install_package('xdotool')
+    end
+
     it 'installs libopencv-dev package' do
       expect(chef_run).to install_package('libopencv-dev')
     end
@@ -71,7 +75,7 @@ describe 'sikulix_test::default' do
 
     it 'executes sikulix setup with java_api option' do
       expect(chef_run).to run_execute(
-          "\"/usr/bin/java\" -jar \"/usr/local/sikulix-1.1.0/sikulixsetup-1.1.0.jar\""\
+          "\"/usr/bin/java\" -jar \"/usr/local/sikulix/sikulixsetup-1.1.0.jar\""\
         ' options 2'
         )
     end
