@@ -1,5 +1,9 @@
 # SikuliX Changelog
 
+## 2.0.1
+
+- Changed license from All Rights Reserved to MIT
+
 ## 2.0.0
 
 - Add ubuntu support
