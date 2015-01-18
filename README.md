@@ -22,7 +22,7 @@ This cookbook installs SikuliX (http://www.sikulix.com/).
 
 ### Cookbooks
 
-These cookbooks are referenced with suggests instead of depends, so be sure to include the cookbooks that apply:
+These cookbooks are referenced with suggests, so be sure to depend on the cookbooks that apply:
 
 - apt
 - windows
