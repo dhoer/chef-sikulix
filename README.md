@@ -63,11 +63,12 @@ both Java 32-Bit and Java 64-Bit is added).
 - `node['sikulix']['setup']['system_mac']` - Default `false`. 
 - `node['sikulix']['setup']['system_linux']` - Default `false`.
 
- Other:
+Other:
 
- - `node['sikulix']['setup']['buildv']` - Build libVisionProxy.so. Default `false`.
- - `node['sikulix']['setup']['notest']` - Skip validation after install. Default `false`.
- - `node['sikulix']['setup']['clean']` - Clean directory. Default `false`.
+- `node['sikulix']['setup']['buildv']` - Build libVisionProxy.so. Default `false`.
+- `node['sikulix']['setup']['notest']` - Skip validation after install. Note that if no screen is available for Ubuntu
+installations, validation will fail. Default `false`.
+- `node['sikulix']['setup']['clean']` - Clean directory. Default `false`.
 
 ## Getting Help
 
