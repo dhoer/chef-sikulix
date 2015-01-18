@@ -1,7 +1,7 @@
 # SikuliX Cookbook
 
-[![Cookbook Version](http://img.shields.io/cookbook/v/sikulix.svg?style=flat-square)][cookbook]
-[![Build Status](http://img.shields.io/travis/dhoer/chef-sikulix.svg?style=flat-square)][travis]
+[![Cookbook Version](http://img.shields.io/cookbook/v/sikulix.svg?style=flat)][cookbook]
+[![Build Status](http://img.shields.io/travis/dhoer/chef-sikulix.svg?style=flat)][travis]
 
 [cookbook]: https://supermarket.chef.io/cookbooks/sikulix
 [travis]: https://travis-ci.org/dhoer/chef-sikulix
