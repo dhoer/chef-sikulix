@@ -1,7 +1,7 @@
 name 'sikulix'
 maintainer 'Dennis Hoer'
 maintainer_email 'dennis.hoer@gmail.com'
-license 'All rights reserved'
+license 'MIT'
 description 'Installs/Configures SikuliX'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 version '2.0.0'
