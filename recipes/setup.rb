@@ -1,10 +1,10 @@
-home = platform?('windows') ? node['sikulix']['windows']['home'] : node['sikulix']['linux']['home']
+root = platform?('windows') ? node['sikulix']['windows']['root'] : node['sikulix']['linux']['root']
 java = platform?('windows') ? node['sikulix']['windows']['java'] : node['sikulix']['linux']['java']
 
 match = /.*\/(.*).jar/.match(node['sikulix']['src']['sikulixsetup']).captures[0]
 v = /.*\-(\d|.*).jar/.match(node['sikulix']['src']['sikulixsetup']).captures[0]
-dir = "#{home}/sikulix-#{v}"
-link = "#{home}/sikulix"
+dir = "#{root}/sikulix-#{v}"
+link = "#{root}/sikulix"
 
 directory dir do
   recursive true

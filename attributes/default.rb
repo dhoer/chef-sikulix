@@ -1,9 +1,9 @@
 default['sikulix']['src']['sikulixsetup'] = 'http://nightly.sikuli.de/sikulixsetup-1.1.0.jar'
 
-default['sikulix']['windows']['home'] = 'C:'
+default['sikulix']['windows']['root'] = 'C:'
 default['sikulix']['windows']['java'] = 'C:/Windows/System32/java.exe'
 
-default['sikulix']['linux']['home'] = '/usr/local'
+default['sikulix']['linux']['root'] = '/usr/local'
 default['sikulix']['linux']['java'] = '/usr/bin/java'
 
 default['sikulix']['packages']['debian'] = %w(wmctrl xdotool libopencv-dev libtesseract-dev)

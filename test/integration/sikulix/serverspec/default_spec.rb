@@ -18,6 +18,10 @@ describe 'sikulix_test::default' do
       it { should be_file }
     end
 
+    describe file('C:/sikulix-1.1.0/sikulix.jar') do
+      it { should be_file }
+    end
+
     describe file('C:/sikulix-1.1.0/sikulixapi.jar') do
       it { should be_file }
     end
@@ -35,6 +39,10 @@ describe 'sikulix_test::default' do
     end
 
     describe file('/usr/local/sikulix-1.1.0/libs/libVisionProxy.so') do
+      it { should be_file }
+    end
+
+    describe file('/usr/local/sikulix-1.1.0/sikulix.jar') do
       it { should be_file }
     end
 

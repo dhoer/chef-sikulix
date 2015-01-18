@@ -2,9 +2,11 @@
 
 [![Cookbook Version](http://img.shields.io/cookbook/v/sikulix.svg)][cookbook]
 [![Build Status](http://img.shields.io/travis/dhoer/chef-sikulix.svg)][travis]
+[![GitHub Issues](https://img.shields.io/github/issues-raw/dhoer/chef-sikulix.svg)][issues]
 
 [cookbook]: https://supermarket.chef.io/cookbooks/sikulix
 [travis]: https://travis-ci.org/dhoer/chef-sikulix
+[issues]: https://github.com/dhoer/chef-sikulix/issues
 
 This cookbook installs SikuliX (http://www.sikulix.com/).
 
@@ -66,8 +68,7 @@ both Java 32-Bit and Java 64-Bit is added).
 Other:
 
 - `node['sikulix']['setup']['buildv']` - Build libVisionProxy.so. Default `false`.
-- `node['sikulix']['setup']['notest']` - Skip validation after install. Note that if no screen is available for Ubuntu
-installations, validation will fail. Default `false`.
+- `node['sikulix']['setup']['notest']` - Skip validation after install. Default `false`.
 - `node['sikulix']['setup']['clean']` - Clean directory. Default `false`.
 
 ## Getting Help
