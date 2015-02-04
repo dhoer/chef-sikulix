@@ -2,7 +2,7 @@
 
 [![Cookbook Version](http://img.shields.io/cookbook/v/sikulix.svg?style=flat-square)][cookbook]
 [![Build Status](http://img.shields.io/travis/dhoer/chef-sikulix.svg?style=flat-square)][travis]
-[![GitHub Issues](http://img.shields.io/github/issues/dhoer/chef-selenium.svg?style=flat-square)][github]
+[![GitHub Issues](http://img.shields.io/github/issues/dhoer/chef-sikulix.svg?style=flat-square)][github]
 
 [cookbook]: https://supermarket.chef.io/cookbooks/sikulix
 [travis]: https://travis-ci.org/dhoer/chef-sikulix
@@ -31,7 +31,7 @@ These cookbooks are referenced with suggests, so be sure to depend on the cookbo
 
 Include the sikulix default recipe in your run list or recipe.
 
-**IMPORTANT!:**
+**IMPORTANT!**
 
 Since there are a variety of setup options to choose from, all option attributes default to `false`.
 You must select each setup option to install by setting its corresponding attribute to `true`.
