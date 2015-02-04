@@ -37,4 +37,10 @@ opts << 'buildv' if node['sikulix']['setup']['buildv'] == true
 opts << 'notest' if node['sikulix']['setup']['notest'] == true
 opts << 'clean' if node['sikulix']['setup']['clean'] == true
 
-execute "\"#{java}\" -jar \"#{link}/#{match}.jar\" options #{opts.join(' ')}"
+if opts.size == 0
+  log 'SikuliX setup has no options selected - nothing to do' do
+    level :warn
+  end
+else
+  execute "\"#{java}\" -jar \"#{link}/#{match}.jar\" options #{opts.join(' ')}"
+end

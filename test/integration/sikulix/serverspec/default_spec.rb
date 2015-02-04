@@ -10,9 +10,9 @@ describe 'sikulix_test::default' do
       it { should be_directory }
     end
 
-    describe file('C:/sikulix-1.1.0/libs/libJXGrabKey.so') do
-      it { should be_file }
-    end
+    # describe file('C:/sikulix-1.1.0/libs/libJXGrabKey.so') do
+    #   it { should be_file }
+    # end
 
     describe file('C:/sikulix-1.1.0/libs/libVisionProxy..so') do
       it { should be_file }
@@ -34,9 +34,9 @@ describe 'sikulix_test::default' do
       it { should be_directory }
     end
 
-    describe file('/usr/local/sikulix-1.1.0/libs/libJXGrabKey.so') do
-      it { should be_file }
-    end
+    # describe file('/usr/local/sikulix-1.1.0/libs/libJXGrabKey.so') do
+    #   it { should be_file }
+    # end
 
     describe file('/usr/local/sikulix-1.1.0/libs/libVisionProxy.so') do
       it { should be_file }

@@ -86,4 +86,14 @@ describe 'sikulix_test::default' do
         )
     end
   end
+
+  context 'no_opts' do
+    let(:chef_run) do
+      ChefSpec::SoloRunner.new(platform: 'ubuntu', version: '14.04').converge(described_recipe)
+    end
+
+    it 'writes a log warning' do
+      expect(chef_run).to write_log('SikuliX setup has no options selected - nothing to do').with(level: :warn)
+    end
+  end
 end

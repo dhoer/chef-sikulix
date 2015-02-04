@@ -1,13 +1,17 @@
 # SikuliX Changelog
 
+## 2.0.2
+
+- No X11 DISPLAY
+
 ## 2.0.1
 
-- Changed license from All Rights Reserved to MIT
+- Change license from All Rights Reserved to MIT
 
 ## 2.0.0
 
 - Add ubuntu support
-- Removed support for JRuby Addons and Remote Server
+- Remove support for JRuby Addons and Remote Server
 - Refactor attribute names
 
 ## 1.0.0
