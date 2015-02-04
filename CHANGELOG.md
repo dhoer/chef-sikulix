@@ -1,5 +1,9 @@
 # SikuliX Changelog
 
+## 2.0.3
+
+- GitHub issues link invalid
+
 ## 2.0.2
 
 - No X11 DISPLAY
