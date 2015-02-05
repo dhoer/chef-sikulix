@@ -39,13 +39,13 @@ You must select each setup option to install by setting its corresponding attrib
 Example
 
 ```ruby
-default_attributes(
-  "sikulix" => {
-    "setup" => {
-      "java_api" => true
+"override_attributes": {
+  "sikulix": {
+    "setup": {
+      "java_api": true
     }
   }
-)
+}
 ```
 
 or
