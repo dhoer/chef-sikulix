@@ -40,11 +40,11 @@ Example
 
 ```ruby
 default_attributes(
-  :sikulix => {
-     :setup => {
-       "java_api" => true
-     }
-   }
+  "sikulix" => {
+    "setup" => {
+      "java_api" => true
+    }
+  }
 )
 ```
 
