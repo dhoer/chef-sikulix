@@ -22,21 +22,16 @@ describe 'sikulix_test::default' do
 
     it 'downloads sikulix setup' do
       expect(chef_run).to create_remote_file('C:/sikulix-1.1.0/sikulixsetup-1.1.0.jar').with(
-          source: 'http://nightly.sikuli.de/sikulixsetup-1.1.0.jar'
-        )
+        source: 'http://nightly.sikuli.de/sikulixsetup-1.1.0.jar')
     end
 
     it 'executes sikulix setup with options' do
       expect(chef_run).to run_execute(
-          "\"C:/Windows/System32/java.exe\" -jar \"C:/sikulix/sikulixsetup-1.1.0.jar\""\
-        ' options 2'
-        )
+        "\"C:/Windows/System32/java.exe\" -jar \"C:/sikulix/sikulixsetup-1.1.0.jar\" options 2")
     end
 
     it 'creates sikulix link to home directory' do
-      expect(chef_run).to create_link('C:/sikulix').with(
-          to: 'C:/sikulix-1.1.0'
-        )
+      expect(chef_run).to create_link('C:/sikulix').with(to: 'C:/sikulix-1.1.0')
     end
   end
 
@@ -68,22 +63,18 @@ describe 'sikulix_test::default' do
     end
 
     it 'downloads sikulix setup' do
-      expect(chef_run).to create_remote_file('/usr/local/sikulix-1.1.0/sikulixsetup-1.1.0.jar').with(
-          source: 'http://nightly.sikuli.de/sikulixsetup-1.1.0.jar'
-        )
+      expect(chef_run).to create_remote_file('/usr/local/sikulix-1.1.0/sikulixsetup-1.1.0.jar')
+        .with(source: 'http://nightly.sikuli.de/sikulixsetup-1.1.0.jar')
     end
 
     it 'executes sikulix setup with java_api option' do
       expect(chef_run).to run_execute(
-          "\"/usr/bin/java\" -jar \"/usr/local/sikulix/sikulixsetup-1.1.0.jar\""\
-        ' options 2'
-        )
+        "\"/usr/bin/java\" -jar \"/usr/local/sikulix/sikulixsetup-1.1.0.jar\" options 2")
     end
 
     it 'creates sikulix link to home directory' do
-      expect(chef_run).to create_link('/usr/local/sikulix').with(
-          to: '/usr/local/sikulix-1.1.0'
-        )
+      expect(chef_run).to create_link('/usr/local/sikulix')
+        .with(to: '/usr/local/sikulix-1.1.0')
     end
   end
 
