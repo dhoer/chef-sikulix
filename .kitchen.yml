@@ -7,25 +7,26 @@ provisioner:
 
 platforms:
   - name: ubuntu-14.04
+    driver:
+      box: boxcutter/ubuntu1404-desktop
+  - name: windows-2012r2
+    driver:
+      box: dhoer/windows-2012r2
 
 suites:
   - name: sikulix
     run_list:
       - recipe[sikulix_test::default]
     attributes:
-      java:
-        jdk_version: '7'
       sikulix:
+        username: vagrant
         setup: {
           ide_jython: true,
           ide_jruby: true,
           java_api: true,
           tesseract_ocr: true,
           system_all: false,
-          system_windows: true,
-          system_mac: true,
-          system_linux: true,
-          buildv: true,
-          notest: true,
+          buildv: false,
+          notest: false,
           clean: false
         }

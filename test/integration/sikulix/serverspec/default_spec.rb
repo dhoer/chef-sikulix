@@ -2,52 +2,49 @@ require 'serverspec_helper'
 
 describe 'sikulix_test::default' do
   if os[:family] == 'windows'
-    describe file('C:/sikulix-1.1.0/Downloads') do
-      it { should be_directory }
-    end
-
-    describe file('C:/sikulix-1.1.0/Build') do
-      it { should be_directory }
-    end
-
-    # describe file('C:/sikulix-1.1.0/libs/libJXGrabKey.so') do
-    #   it { should be_file }
-    # end
-
-    describe file('C:/sikulix-1.1.0/libs/libVisionProxy..so') do
+    describe file('C:/SikuliX/sikulix-1.1.0/SikuliX-1.1.0-SetupLog.txt') do
       it { should be_file }
     end
 
-    describe file('C:/sikulix-1.1.0/sikulix.jar') do
+    describe file('C:/SikuliX/sikulix-1.1.0/sikulixsetup-1.1.0.jar') do
       it { should be_file }
     end
 
-    describe file('C:/sikulix-1.1.0/sikulixapi.jar') do
+    describe file('/opt/sikulix/sikulix-1.1.0/runsikulix.cmd') do
+      it { should be_file }
+    end
+
+    describe file('C:/SikuliX/sikulix-1.1.0/sikulix.jar') do
+      it { should be_file }
+    end
+
+    describe file('C:/SikuliX/sikulix-1.1.0/sikulixapi.jar') do
       it { should be_file }
     end
   else
-    describe file('/usr/local/sikulix-1.1.0/Downloads') do
-      it { should be_directory }
-    end
-
-    describe file('/usr/local/sikulix-1.1.0/Build') do
-      it { should be_directory }
-    end
-
-    # describe file('/usr/local/sikulix-1.1.0/libs/libJXGrabKey.so') do
-    #   it { should be_file }
-    # end
-
-    describe file('/usr/local/sikulix-1.1.0/libs/libVisionProxy.so') do
+    describe file('/home/vagrant/SikuliX/SikuliX-1.1.0-SetupLog.txt') do
       it { should be_file }
+      it { should be_owned_by 'vagrant' }
     end
 
-    describe file('/usr/local/sikulix-1.1.0/sikulix.jar') do
+    describe file('/home/vagrant/SikuliX/sikulixsetup-1.1.0.jar') do
       it { should be_file }
+      it { should be_owned_by 'vagrant' }
     end
 
-    describe file('/usr/local/sikulix-1.1.0/sikulixapi.jar') do
+    describe file('/home/vagrant/SikuliX/runsikulix') do
       it { should be_file }
+      it { should be_owned_by 'vagrant' }
+    end
+
+    describe file('/home/vagrant/SikuliX/sikulix.jar') do
+      it { should be_file }
+      it { should be_owned_by 'vagrant' }
+    end
+
+    describe file('/home/vagrant/SikuliX/sikulixapi.jar') do
+      it { should be_file }
+      it { should be_owned_by 'vagrant' }
     end
   end
 end

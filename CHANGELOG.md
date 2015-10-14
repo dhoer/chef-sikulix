@@ -1,4 +1,8 @@
-# SikuliX Changelog
+# Changelog
+
+## 3.0.0
+
+- Support Sikulix 1.1.0 
 
 ## 2.0.3
 

@@ -4,12 +4,13 @@ maintainer_email 'dennis.hoer@gmail.com'
 license 'MIT'
 description 'Installs/Configures SikuliX'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version '2.0.3'
+version '3.0.0'
 
 supports 'windows'
 supports 'ubuntu'
 
-suggests 'apt', '~> 2.6'
-suggests 'java', '~> 1.29'
-suggests 'aws', '~> 2.5' # https://github.com/agileorbit-cookbooks/java#windows
-suggests 'windows', '~> 1.34'
+depends 'apt', '~> 2.6'
+depends 'windows', '~> 1.34'
+
+source_url 'https://github.com/dhoer/chef-sikulix' if respond_to?(:source_url)
+issues_url 'https://github.com/dhoer/chef-sikulix/issues' if respond_to?(:issues_url)

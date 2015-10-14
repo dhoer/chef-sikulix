@@ -2,18 +2,16 @@
 
 [![Cookbook Version](http://img.shields.io/cookbook/v/sikulix.svg?style=flat-square)][cookbook]
 [![Build Status](http://img.shields.io/travis/dhoer/chef-sikulix.svg?style=flat-square)][travis]
-[![GitHub Issues](http://img.shields.io/github/issues/dhoer/chef-sikulix.svg?style=flat-square)][github]
 
 [cookbook]: https://supermarket.chef.io/cookbooks/sikulix
 [travis]: https://travis-ci.org/dhoer/chef-sikulix
-[github]: https://github.com/dhoer/chef-sikulix/issues
 
-This cookbook installs SikuliX (http://www.sikulix.com/).
+This cookbook installs SikuliX 1.1.0 (http://www.sikulix.com/).
 
 ## Requirements
 
-- Java must be installed
-- Chef 11
+- Java (not installed by this cookbook)
+- Chef 11+
 
 ### Platforms
 

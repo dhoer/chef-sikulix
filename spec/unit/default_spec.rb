@@ -21,8 +21,7 @@ describe 'sikulix_test::default' do
     end
 
     it 'downloads sikulix setup' do
-      expect(chef_run).to create_remote_file('C:/sikulix-1.1.0/sikulixsetup-1.1.0.jar').with(
-        source: 'http://nightly.sikuli.de/sikulixsetup-1.1.0.jar')
+      expect(chef_run).to create_remote_file('C:/sikulix-1.1.0/sikulixsetup-1.1.0.jar')
     end
 
     it 'executes sikulix setup with options' do
