@@ -29,10 +29,8 @@ These cookbooks are referenced with suggests, so be sure to depend on the cookbo
 
 Include the sikulix default recipe in your run list or recipe.
 
-**IMPORTANT!**
-
-Since there are a variety of setup options to choose from, all option attributes default to `false`.
-You must select each setup option to install by setting its corresponding attribute to `true`.
+**IMPORTANT!** Since there are a variety of setup options to choose from, all option attributes default to `false`. You 
+must select each setup option to install by setting its corresponding attribute to `true`.
 
 Example
 
@@ -73,9 +71,6 @@ With these options not selected, the setup process will only add system specific
 both Java 32-Bit and Java 64-Bit is added).
 
 - `node['sikulix']['setup']['system_all']` - Default `false`. 
-- `node['sikulix']['setup']['system_windows']` - Default `false`. 
-- `node['sikulix']['setup']['system_mac']` - Default `false`. 
-- `node['sikulix']['setup']['system_linux']` - Default `false`.
 
 Other:
 

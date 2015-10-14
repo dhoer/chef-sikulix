@@ -1,7 +1,7 @@
 root = platform?('windows') ? node['sikulix']['windows']['root'] : node['sikulix']['linux']['root']
 java = platform?('windows') ? node['sikulix']['windows']['java'] : node['sikulix']['linux']['java']
 
-match = /.*\/(.*).jar/.match(node['sikulix']['setup']['url']).captures[0]
+match = %r{.*/(.*).jar}.match(node['sikulix']['setup']['url']).captures[0]
 
 directory root do
   recursive true
