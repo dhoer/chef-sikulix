@@ -53,6 +53,7 @@ node.set['sikulix']['setup']['java_api'] = true
 ## Attributes
 
 Username is required by linux only.
+
 - `node['sikulix']['username']` - Linux only. Default `nil`.
 
 Pack1: I want SikuliX, containing the Sikuli IDE and allowing to run Sikuli scripts from commandline.
