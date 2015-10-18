@@ -1,15 +1,16 @@
 default['sikulix']['setup']['url'] =
   'https://launchpad.net/sikuli/sikulix/1.1.0/+download/sikulixsetup-1.1.0.jar'
 
-default['sikulix']['username'] = nil
+default['sikulix']['windows']['home'] = "#{ENV['SYSTEMDRIVE']}\\SikuliX"
+default['sikulix']['windows']['java'] = "#{ENV['SYSTEMDRIVE']}\\java\\bin\\java.exe"
 
-default['sikulix']['windows']['root'] = 'C:/SikuliX'
-default['sikulix']['windows']['java'] = 'C:/java/bin/java.exe'
-
-default['sikulix']['linux']['root'] = "/home/#{node['sikulix']['username']}/SikuliX"
+default['sikulix']['linux']['home'] = "/home/#{node['sikulix']['username']}/SikuliX"
 default['sikulix']['linux']['java'] = '/usr/bin/java'
 
 default['sikulix']['packages']['debian'] = %w(wmctrl xdotool libopencv-dev libtesseract-dev)
+
+# required by linux only
+default['sikulix']['username'] = nil
 
 # https://github.com/RaiMan/SikuliX-2014/blob/master/Setup/src/main/java/org/sikuli/setup/RunSetup.java
 default['sikulix']['setup']['ide_jython'] = false # (1.1)

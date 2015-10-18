@@ -20,8 +20,6 @@ This cookbook installs SikuliX 1.1.0 (http://www.sikulix.com/).
 
 ### Cookbooks
 
-These cookbooks are referenced with suggests, so be sure to depend on the cookbooks that apply:
-
 - apt
 - windows
 
@@ -37,6 +35,7 @@ Example
 ```ruby
 "override_attributes": {
   "sikulix": {
+    "username": "vagrant",
     "setup": {
       "java_api": true
     }
@@ -47,11 +46,14 @@ Example
 or
 
 ```ruby
+node.set['sikulix']['username'] = 'vagrant'
 node.set['sikulix']['setup']['java_api'] = true
 ```
 
-
 ## Attributes
+
+Username is required by linux only.
+- `node['sikulix']['username']` - Linux only. Default `nil`.
 
 Pack1: I want SikuliX, containing the Sikuli IDE and allowing to run Sikuli scripts from commandline.
 

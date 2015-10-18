@@ -10,4 +10,5 @@ gem 'faraday', '= 0.9.1'
 group :integration do
   gem 'test-kitchen', '~> 1.2'
   gem 'kitchen-vagrant', '~> 0.15'
+  gem 'winrm-transport', '~> 1.0'
 end

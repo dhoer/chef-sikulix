@@ -1,9 +1,9 @@
-root = platform?('windows') ? node['sikulix']['windows']['root'] : node['sikulix']['linux']['root']
+home = platform?('windows') ? node['sikulix']['windows']['home'] : node['sikulix']['linux']['home']
 java = platform?('windows') ? node['sikulix']['windows']['java'] : node['sikulix']['linux']['java']
 
 match = %r{.*/(.*).jar}.match(node['sikulix']['setup']['url']).captures[0]
 
-directory root do
+directory home do
   recursive true
   mode '0775'
   action :create
@@ -13,7 +13,7 @@ node['sikulix']['packages']['debian'].each do |pkg|
   package(pkg)
 end if platform_family?('debian')
 
-remote_file "#{root}/#{match}.jar" do
+remote_file "#{home}/#{match}.jar" do
   source node['sikulix']['setup']['url']
 end
 
@@ -31,9 +31,15 @@ opts << 'clean' if node['sikulix']['setup']['clean']
 if opts.size == 0
   fail('SikuliX setup has no options selected!')
 else
-  execute "\"#{java}\" -jar \"#{root}/#{match}.jar\" options #{opts.join(' ')}"
+  execute "\"#{java}\" -jar \"#{home}/#{match}.jar\" options #{opts.join(' ')}"
 end
 
-execute "chown -R #{node['sikulix']['username']} #{root}" do
-  only_if { platform_family?('debian') }
+if platform?('windows')
+  env 'SIKULIX_HOME' do
+    value home
+  end
+else
+  execute "chown -R #{node['sikulix']['username']} #{home}" do
+    only_if { platform_family?('debian') }
+  end
 end

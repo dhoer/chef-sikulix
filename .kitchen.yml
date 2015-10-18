@@ -14,7 +14,7 @@ platforms:
       box: dhoer/windows-2012r2
 
 suites:
-  - name: sikulix
+  - name: default
     run_list:
       - recipe[sikulix_test::default]
     attributes:

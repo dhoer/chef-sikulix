@@ -2,24 +2,28 @@ require 'serverspec_helper'
 
 describe 'sikulix_test::default' do
   if os[:family] == 'windows'
-    describe file('C:/SikuliX/sikulix-1.1.0/SikuliX-1.1.0-SetupLog.txt') do
+    describe file('C:/SikuliX/SikuliX-1.1.0-SetupLog.txt') do
       it { should be_file }
     end
 
-    describe file('C:/SikuliX/sikulix-1.1.0/sikulixsetup-1.1.0.jar') do
+    describe file('C:/SikuliX/sikulixsetup-1.1.0.jar') do
       it { should be_file }
     end
 
-    describe file('/opt/sikulix/sikulix-1.1.0/runsikulix.cmd') do
+    describe file('C:/SikuliX/runsikulix.cmd') do
       it { should be_file }
     end
 
-    describe file('C:/SikuliX/sikulix-1.1.0/sikulix.jar') do
+    describe file('C:/SikuliX/sikulix.jar') do
       it { should be_file }
     end
 
-    describe file('C:/SikuliX/sikulix-1.1.0/sikulixapi.jar') do
+    describe file('C:/SikuliX/sikulixapi.jar') do
       it { should be_file }
+    end
+
+    describe command('C:\SikuliX\runsikulix.cmd -h') do
+      its(:stdout) { should match(/Running SikuliX/) }
     end
   else
     describe file('/home/vagrant/SikuliX/SikuliX-1.1.0-SetupLog.txt') do
@@ -45,6 +49,10 @@ describe 'sikulix_test::default' do
     describe file('/home/vagrant/SikuliX/sikulixapi.jar') do
       it { should be_file }
       it { should be_owned_by 'vagrant' }
+    end
+
+    describe command('/home/vagrant/SikuliX/runsikulix -h') do
+      its(:stdout) { should match(/running SikuliX/) }
     end
   end
 end
