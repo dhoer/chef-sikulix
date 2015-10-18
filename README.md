@@ -30,7 +30,7 @@ Include the sikulix default recipe in your run list or recipe.
 **IMPORTANT!** Since there are a variety of setup options to choose from, all option attributes default to `false`. You 
 must select each setup option to install by setting its corresponding attribute to `true`.
 
-Example
+Example of setting environment override
 
 ```ruby
 "override_attributes": {
@@ -41,13 +41,6 @@ Example
     }
   }
 }
-```
-
-or
-
-```ruby
-node.set['sikulix']['username'] = 'vagrant'
-node.set['sikulix']['setup']['java_api'] = true
 ```
 
 ## Attributes
@@ -83,7 +76,7 @@ Other:
 
 ## Getting Help
 
-- Ask specific questions on [Stack Overflow](http://stackoverflow.com/questions/tagged/chef-sikulix).
+- Ask specific questions on [Stack Overflow](http://stackoverflow.com/questions/tagged/sikulix).
 - Report bugs and discuss potential features in [Github issues](https://github.com/dhoer/chef-sikulix/issues).
 
 ## Contributing
