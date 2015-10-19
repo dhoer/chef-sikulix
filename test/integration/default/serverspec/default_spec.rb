@@ -1,7 +1,8 @@
 require 'serverspec_helper'
 
 describe 'sikulix_test::default' do
-  if os[:family] == 'windows'
+  case os[:family]
+  when 'windows'
     describe file('C:/SikuliX/SikuliX-1.1.0-SetupLog.txt') do
       it { should be_file }
     end
@@ -25,33 +26,56 @@ describe 'sikulix_test::default' do
     describe command('C:\SikuliX\runsikulix.cmd -h') do
       its(:stdout) { should match(/Running SikuliX/) }
     end
+  when 'darwin'
+    describe file('/opt/SikuliX/SikuliX-1.1.0-SetupLog.txt') do
+      it { should be_file }
+    end
+
+    describe file('/opt/SikuliX/sikulixsetup-1.1.0.jar') do
+      it { should be_file }
+    end
+
+    describe file('/opt/SikuliX/runsikulix') do
+      it { should be_file }
+    end
+
+    describe file('/opt/SikuliX/sikulixapi.jar') do
+      it { should be_file }
+    end
+
+    describe file('/opt/SikuliX/SikuliX.app') do
+      it { should be_directory }
+    end
+
+    describe file('/Applications/SikuliX.app') do
+      it { should be_directory }
+    end
+
+    describe command('/opt/SikuliX/runsikulix -h') do
+      its(:stdout) { should match(/running SikuliX/) }
+    end
   else
-    describe file('/home/vagrant/SikuliX/SikuliX-1.1.0-SetupLog.txt') do
+    describe file('/opt/SikuliX/SikuliX-1.1.0-SetupLog.txt') do
       it { should be_file }
-      it { should be_owned_by 'vagrant' }
     end
 
-    describe file('/home/vagrant/SikuliX/sikulixsetup-1.1.0.jar') do
+    describe file('/opt/SikuliX/sikulixsetup-1.1.0.jar') do
       it { should be_file }
-      it { should be_owned_by 'vagrant' }
     end
 
-    describe file('/home/vagrant/SikuliX/runsikulix') do
+    describe file('/opt/SikuliX/runsikulix') do
       it { should be_file }
-      it { should be_owned_by 'vagrant' }
     end
 
-    describe file('/home/vagrant/SikuliX/sikulix.jar') do
+    describe file('/opt/SikuliX/sikulix.jar') do
       it { should be_file }
-      it { should be_owned_by 'vagrant' }
     end
 
-    describe file('/home/vagrant/SikuliX/sikulixapi.jar') do
+    describe file('/opt/SikuliX/sikulixapi.jar') do
       it { should be_file }
-      it { should be_owned_by 'vagrant' }
     end
 
-    describe command('/home/vagrant/SikuliX/runsikulix -h') do
+    describe command('/opt/SikuliX/runsikulix -h') do
       its(:stdout) { should match(/running SikuliX/) }
     end
   end

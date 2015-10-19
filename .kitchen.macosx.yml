@@ -1,18 +1,19 @@
+# Usage: KITCHEN_YAML=.kitchen.macosx.yml kitchen list
 ---
 driver:
   name: vagrant
+  provider: vmware_fusion
+  customize:
+    memory: 2048
 
 provisioner:
   name: chef_solo
   require_chef_omnibus: 11
 
 platforms:
-  - name: ubuntu-14.04
+  - name: macosx-10.10
     driver:
-      box: boxcutter/ubuntu1404-desktop
-  - name: windows-2012r2
-    driver:
-      box: dhoer/windows-2012r2
+      box: dhoer/macosx-10.10
 
 suites:
   - name: default

@@ -1,8 +1,12 @@
 # Changelog
 
+## 3.1.0
+
+- Support for Mac OS X
+
 ## 3.0.0
 
-- Support Sikulix 1.1.0 
+- Support for Sikulix 1.1.0 
 
 ## 2.0.3
 

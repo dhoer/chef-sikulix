@@ -4,9 +4,10 @@ maintainer_email 'dennis.hoer@gmail.com'
 license 'MIT'
 description 'Installs/Configures SikuliX'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version '3.0.0'
+version '3.1.0'
 
 supports 'windows'
+supports 'mac_os_x'
 supports 'ubuntu'
 
 depends 'apt', '~> 2.6'

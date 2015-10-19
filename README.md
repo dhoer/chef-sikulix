@@ -6,7 +6,7 @@
 [cookbook]: https://supermarket.chef.io/cookbooks/sikulix
 [travis]: https://travis-ci.org/dhoer/chef-sikulix
 
-This cookbook installs SikuliX 1.1.0 (http://www.sikulix.com/).
+Installs SikuliX 1.1.0 (http://www.sikulix.com/).
 
 ## Requirements
 
@@ -15,6 +15,7 @@ This cookbook installs SikuliX 1.1.0 (http://www.sikulix.com/).
 
 ### Platforms
 
+- Mac OS X
 - Ubuntu
 - Windows
 
@@ -28,14 +29,13 @@ This cookbook installs SikuliX 1.1.0 (http://www.sikulix.com/).
 Include the sikulix default recipe in your run list or recipe.
 
 **IMPORTANT!** Since there are a variety of setup options to choose from, all option attributes default to `false`. You 
-must select each setup option to install by setting its corresponding attribute to `true`.
+must select at least one setup option to install by setting its corresponding attribute to `true`.
 
-Example of setting environment override
+Example
 
 ```ruby
 "override_attributes": {
   "sikulix": {
-    "username": "vagrant",
     "setup": {
       "java_api": true
     }
@@ -44,10 +44,6 @@ Example of setting environment override
 ```
 
 ## Attributes
-
-Username is required by linux only.
-
-- `node['sikulix']['username']` - Linux only. Default `nil`.
 
 Pack1: I want SikuliX, containing the Sikuli IDE and allowing to run Sikuli scripts from commandline.
 

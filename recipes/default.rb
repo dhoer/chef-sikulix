@@ -1,5 +1,10 @@
-home = platform?('windows') ? node['sikulix']['windows']['home'] : node['sikulix']['linux']['home']
-java = platform?('windows') ? node['sikulix']['windows']['java'] : node['sikulix']['linux']['java']
+if platform?('windows')
+  home = node['sikulix']['windows']['home']
+  java = node['sikulix']['windows']['java']
+else
+  home = node['sikulix']['unix']['home']
+  java = node['sikulix']['unix']['java']
+end
 
 match = %r{.*/(.*).jar}.match(node['sikulix']['setup']['url']).captures[0]
 
@@ -34,12 +39,13 @@ else
   execute "\"#{java}\" -jar \"#{home}/#{match}.jar\" options #{opts.join(' ')}"
 end
 
-if platform?('windows')
+case node['platform']
+when 'mac_os_x'
+  execute "chmod -R 755 #{home} && cp -R #{home}/SikuliX.app /Applications"
+when 'windows'
   env 'SIKULIX_HOME' do
     value home
   end
-else
-  execute "chown -R #{node['sikulix']['username']} #{home}" do
-    only_if { platform_family?('debian') }
-  end
+else # linux
+  execute "chmod -R 755 #{home}"
 end

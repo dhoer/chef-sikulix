@@ -32,10 +32,35 @@ describe 'sikulix_test::default' do
     end
   end
 
+  context 'macosx' do
+    let(:chef_run) do
+      ChefSpec::SoloRunner.new(platform: 'mac_os_x', version: '10.10') do |node|
+        node.set['sikulix']['setup']['java_api'] = true
+      end.converge(described_recipe)
+    end
+
+    it 'creates sikulix home directory' do
+      expect(chef_run).to create_directory('/opt/SikuliX')
+    end
+
+    it 'downloads sikulix setup' do
+      expect(chef_run).to create_remote_file('/opt/SikuliX/sikulixsetup-1.1.0.jar')
+        .with(source: 'https://launchpad.net/sikuli/sikulix/1.1.0/+download/sikulixsetup-1.1.0.jar')
+    end
+
+    it 'executes sikulix setup with java_api option' do
+      expect(chef_run).to run_execute(
+        "\"/usr/bin/java\" -jar \"/opt/SikuliX/sikulixsetup-1.1.0.jar\" options 2")
+    end
+
+    it 'executes chmod on home directory and copies SikuliX.app to Applications' do
+      expect(chef_run).to run_execute('chmod -R 755 /opt/SikuliX && cp -R /opt/SikuliX/SikuliX.app /Applications')
+    end
+  end
+
   context 'ubuntu' do
     let(:chef_run) do
       ChefSpec::SoloRunner.new(platform: 'ubuntu', version: '14.04') do |node|
-        node.set['sikulix']['username'] = 'username'
         node.set['sikulix']['setup']['java_api'] = true
       end.converge(described_recipe)
     end
@@ -57,21 +82,21 @@ describe 'sikulix_test::default' do
     end
 
     it 'creates sikulix home directory' do
-      expect(chef_run).to create_directory('/home/username/SikuliX')
+      expect(chef_run).to create_directory('/opt/SikuliX')
     end
 
     it 'downloads sikulix setup' do
-      expect(chef_run).to create_remote_file('/home/username/SikuliX/sikulixsetup-1.1.0.jar')
+      expect(chef_run).to create_remote_file('/opt/SikuliX/sikulixsetup-1.1.0.jar')
         .with(source: 'https://launchpad.net/sikuli/sikulix/1.1.0/+download/sikulixsetup-1.1.0.jar')
     end
 
     it 'executes sikulix setup with java_api option' do
       expect(chef_run).to run_execute(
-          "\"/usr/bin/java\" -jar \"/home/username/SikuliX/sikulixsetup-1.1.0.jar\" options 2")
+        "\"/usr/bin/java\" -jar \"/opt/SikuliX/sikulixsetup-1.1.0.jar\" options 2")
     end
 
-    it 'executes chown on directory' do
-      expect(chef_run).to run_execute('chown -R username /home/username/SikuliX')
+    it 'executes chmod on home directory' do
+      expect(chef_run).to run_execute('chmod -R 755 /opt/SikuliX')
     end
   end
 
